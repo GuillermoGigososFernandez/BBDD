@@ -1,0 +1,17 @@
+CREATE TABLE PROFESOR(
+    DNI VARCHAR2(9), 
+    NOMBRE VARCHAR2(30),
+    APELLIDO1 VARCHAR2(50),
+    APELLIDO2 VARCHAR(50) NULL,     --SI NO PONGO NULL, LO ENTIENDE COMO NOT NULL
+    TIPO VARCHAR2(20),
+    CONSTRAINT pk_profesor PRIMARY KEY (DNI)
+);
+
+CREATE TABLE ASIGNATURA(
+    CODASIG NUMBER(3),      --PUEDE TENER 3 CIFRAS
+    NOMBRE VARCHAR2(30),
+    NUMHORAS NUMBER(3),             
+    DNI_PROFESOR VARCHAR2(9),       --VIENE DE LA OTRA TABLA
+    CONSTRAINT pk_asignatura PRIMARY KEY(CODASIG)       --pk_asignatura es el nombre que le ponemos (pk de la tabla asignatura)
+    CONSTRAINT fk_asignatura FOREIGN KEY(DNI_PROFESOR) REFERENCES PROFESOR(DNI)     --references es de donde viene
+);
